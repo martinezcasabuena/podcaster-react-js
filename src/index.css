@@ -61,8 +61,111 @@ code {
   border-bottom: 1px solid lightgray;
 }
 
+.podcast-detail-container {
+  padding: 0px 15px;
+}
+
+.podcast-detail-left {
+  width: 20%;
+  border: 1px solid black;
+  padding: 15px 20px;
+  /* display: flex;
+  flex-direction: column; */
+  display: inline-block;
+}
+.podcast-detail-left img {
+  width: 75%;
+  align-self: center;
+}
+
+.podcast-detail-left .podcast-name {
+  margin-top: 25px;
+}
+
+.podcast-detail-left .podcast-description {
+  margin-top: 25px;
+  text-align: left;
+}
+
+.podcast-detail-left .podcast-description {
+  margin-top: 25px;
+  text-align: left;
+}
+
+.podcast-detail-left .podcast-description p {
+  font-style: italic;
+}
+
+.podcast-detail-right {
+  vertical-align: top;
+  width: 70%;
+  border: 1px solid black;
+  float: right;
+}
+
+.podcast-detail-right .episodes-count {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.podcast-detail-right .episodes-list {
+  margin-top: 20px;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.podcast-detail-right .episodes-list .episode-row {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid;
+  padding: 5px 0px;
+  border-color: gray;
+  height: 35px;
+  align-items: center;
+}
+
+.podcast-detail-right .episodes-list .episode-row:last-child {
+  border-bottom: 1px solid gray;
+}
+
+.podcast-detail-right .episodes-list .episode-row .column {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.podcast-detail-right .episodes-list .episode-row .episode-title {
+  flex-basis: 60%;
+}
+
+.podcast-detail-right .episodes-list .episode-row.header {
+  border: 0;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.cabecera {
+  display: flex;
+  flex-direction: row;
+  background-color: lightgray;
+}
+
+.fila {
+  display: flex;
+  flex-direction: row;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
   outline: none;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  color: inherit;
+  text-decoration: none;
 }
