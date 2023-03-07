@@ -2,10 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import secondsToTime from "../utils/SecondsToTime";
 
-const EpisodeRow = ({ episode }) => {
+const EpisodeRow = ({ episode, setSelectedEpisode }) => {
   return (
     <div className="episode-row">
-      <Link className="episode-title column" to={""}>
+      <Link
+        className="episode-title column"
+        to={`episode/${episode["guid"]}`}
+        onClick={() => setSelectedEpisode(episode)}
+      >
         {episode["title"]}
       </Link>
       <div className="episode-date column">

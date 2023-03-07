@@ -2,7 +2,8 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
-import PodcastDetail from "./components/PodcastDetail";
+import PodcastDetails from "./components/PodcastDetails";
+import EpisodeDetails from "./components/EpisodeDetails";
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/podcast/:podcastId" element={<PodcastDetail />} />
+        <Route path="/podcast/:podcastId" element={<PodcastDetails />}>
+          <Route path="episode/:episodeId" element={<EpisodeDetails />} />
+        </Route>
       </Routes>
     </div>
   );
