@@ -1,19 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Outlet, useParams, useOutlet } from "react-router-dom";
 import podcastsService from "../services/podcastsService";
 import EpisodeRow from "./EpisodeRow";
+import localStorageService from "../services/localStorageService";
+import { AppContext } from "../App";
 
 const PodcastDetails = () => {
   const { podcastId } = useParams();
   const [podcast, setPodcast] = useState({});
-  const [selectedEpisode, setSelectedEpisode] = useState({});
+  const { setLoading } = useContext(AppContext);
 
   const outlet = useOutlet();
-  console.log(selectedEpisode);
 
   const getData = async () => {
-    const podcastData = await podcastsService.getPodcast(podcastId);
-    setPodcast(podcastData);
+    setLoading(true);
+    const value = localStorageService.getKey(`p-${podcastId}`);
+    if (value) {
+      setPodcast(value);
+    } else {
+      const podcastData = await podcastsService.getPodcast(podcastId);
+      setPodcast(podcastData);
+      localStorageService.setKey(`p-${podcastId}`, podcastData);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -39,7 +48,7 @@ const PodcastDetails = () => {
       </div>
       <div className="podcast-detail-right">
         {outlet ? (
-          <Outlet context={[selectedEpisode]} />
+          <Outlet />
         ) : (
           <>
             <h2 className="episodes-count">
@@ -52,11 +61,7 @@ const PodcastDetails = () => {
                 <div className="episode-duration column">Duration</div>
               </div>
               {podcast.podcastDetails?.item.map((episode, i) => (
-                <EpisodeRow
-                  key={i}
-                  episode={episode}
-                  setSelectedEpisode={setSelectedEpisode}
-                />
+                <EpisodeRow key={i} episode={episode} />
               ))}
             </div>
           </>

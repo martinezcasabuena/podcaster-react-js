@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import localStorageService from "../services/localStorageService";
 import podcastsService from "../services/podcastsService";
 import PodcastCard from "./PodcastCard";
 
@@ -32,10 +33,16 @@ const Home = () => {
   };
 
   const getData = async () => {
-    const podcasts = await podcastsService.getAll();
-    setPodcastList(podcasts.feed.entry);
-    setFilteredList(podcasts.feed.entry);
-    console.log(podcasts.feed.entry);
+    const value = localStorageService.getKey("podcasts-lst");
+    if (value) {
+      setPodcastList(value);
+      setFilteredList(value);
+    } else {
+      const podcasts = await podcastsService.getAll();
+      setPodcastList(podcasts);
+      setFilteredList(podcasts);
+      localStorageService.setKey("podcasts-lst", podcasts);
+    }
   };
 
   useEffect(() => {

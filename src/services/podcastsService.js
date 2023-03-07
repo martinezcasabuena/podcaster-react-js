@@ -1,12 +1,11 @@
 import API_URL from "../config";
-import xmlToJson from "../utils/XMLToJson";
 const xml2js = require("xml2js");
-
-const parser = new DOMParser();
 
 const podcastsService = {
   getAll: async () => {
-    return fetch(API_URL).then((response) => response.json());
+    return fetch(API_URL)
+      .then((response) => response.json())
+      .then((data) => data.feed.entry);
   },
   getPodcast: async (podcastId) => {
     const URL = `https://itunes.apple.com/lookup?id=${podcastId}`;
@@ -37,17 +36,6 @@ const podcastsService = {
             };
 
             return completeData;
-
-            //const parser = new DOMParser();
-            //const xmlDoc = parser.parseFromString(xml, "text/xml");
-            //const xmlObj = xmlToJson(xmlDoc);
-
-            // const completeData = {
-            //   ...data["results"][0],
-            //    podcastDetails: xmlObj.rss.channel,
-            // };
-
-            // return completeData;
           });
       })
       .catch((error) => {
