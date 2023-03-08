@@ -1,9 +1,9 @@
 import "./App.css";
 import React, { createContext, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import Header from "./components/Header";
-import PodcastDetails from "./components/PodcastDetails";
+import Podcast from "./pages/Podcast";
 import EpisodeDetails from "./components/EpisodeDetails";
 import { Container } from "@mui/material";
 
@@ -18,7 +18,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/podcast/:podcastId" element={<PodcastDetails />}>
+          <Route path="/podcast/:podcastId" element={<Podcast />}>
             <Route path="episode/:episodeId" element={<EpisodeDetails />} />
           </Route>
         </Routes>

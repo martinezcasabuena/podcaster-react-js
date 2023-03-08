@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import localStorageService from "../services/localStorageService";
 import podcastsService from "../services/podcastsService";
-import PodcastCard from "./PodcastCard";
+import PodcastCard from "../components/PodcastCard";
 import { Grid } from "@mui/material";
 import Input from "@mui/joy/Input";
 import Box from "@mui/material/Box";
