@@ -182,3 +182,8 @@ a:link {
 .App {
   max-width: 1200px;
 }
+
+.audio-reproducer {
+  width: 100%;
+  margin-bottom: 1rem;
+}

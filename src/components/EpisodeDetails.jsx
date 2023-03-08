@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import localStorageService from "../services/localStorageService";
 import { AppContext } from "../App";
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 const EpisodeDetails = () => {
@@ -30,9 +30,13 @@ const EpisodeDetails = () => {
           __html: episodeInfo.description,
         }}
       ></Typography>
-      <audio controls>
-        <source src="" type="audio/mp3" />
-      </audio>
+      <Divider sx={{ my: 4 }} />
+
+      {episodeInfo.audioURL && (
+        <audio controls className="audio-reproducer">
+          <source src={episodeInfo.audioURL} type={episodeInfo.audioType} />
+        </audio>
+      )}
     </Box>
   );
 };

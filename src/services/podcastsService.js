@@ -37,7 +37,7 @@ const podcastsService = {
         const result = await new Promise((resolve, reject) => {
           xml2js.parseString(
             xml,
-            { explicitArray: false, ignoreAttrs: true },
+            { explicitArray: false, mergeAttrs: true },
             (err, result) => {
               if (err) {
                 reject(err);

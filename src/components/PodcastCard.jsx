@@ -15,7 +15,6 @@ const PodcastCard = ({ data }) => {
             <Avatar
               src={data.image}
               sx={{ width: 100, height: 100, margin: "auto" }}
-              textAlign="center"
             />
             <Typography component="div" textAlign="center">
               {data.title}

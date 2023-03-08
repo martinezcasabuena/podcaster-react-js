@@ -1,3 +1,5 @@
+import GenerateGUID from "./GenerateGUID";
+
 const Mapping = {
   mapPodcasts: (data) => {
     let podcasts = [];
@@ -25,12 +27,20 @@ const Mapping = {
   mapEpisodes: (data) => {
     let episodes = [];
     data.forEach((episode) => {
+      var id = episode.guid["_"] ? episode.guid["_"] : episode.guid;
+      const validID = /^[^\/:]*$/.test(id);
+      if (!validID) {
+        id = GenerateGUID();
+      }
+
       episodes.push({
-        id: episode.guid,
+        id: id,
         title: episode.title,
         date: episode.pubDate,
         duration: episode["itunes:duration"],
         description: episode.description,
+        audioURL: episode.enclosure?.url,
+        audioType: episode.enclosure?.type,
       });
     });
     return episodes;
