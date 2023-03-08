@@ -41,22 +41,22 @@ const PodcastDetails = () => {
         textAlign="center"
       >
         <Box sx={{ my: 3 }}>
-          <img src={podcast["artworkUrl600"]} />
+          <img src={podcast.image} />
         </Box>
 
         <Divider sx={{ mx: 1 }} />
         <Box sx={{ my: 3, mx: 2 }} className="podcast-name" textAlign={"left"}>
-          <strong>{podcast["collectionName"]}</strong>
+          <strong>{podcast.title}</strong>
           <div>
             <span>by </span>
-            <span>{podcast["artistName"]}</span>
+            <span>{podcast.artist}</span>
           </div>
         </Box>
         <Divider sx={{ mx: 1 }} />
         <Box sx={{ my: 3, mx: 1 }} className="podcast-description">
           <strong>Description:</strong>
           <Typography sx={{ my: 1 }} variant="body2" color="text.secondary">
-            {podcast.podcastDetails?.["description"]}
+            {podcast["description"]}
           </Typography>
         </Box>
       </Box>
@@ -72,11 +72,11 @@ const PodcastDetails = () => {
                 color="text.secondary"
                 fontWeight={"bold"}
               >
-                Episodes: {podcast.podcastDetails?.item.length}
+                Episodes: {podcast.episodes?.length}
               </Typography>
             </Box>
 
-            <EpisodesTable episodeList={podcast.podcastDetails?.item} />
+            <EpisodesTable episodeList={podcast.episodes} />
           </>
         )}
       </Box>

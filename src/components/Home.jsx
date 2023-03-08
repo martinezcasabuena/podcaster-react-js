@@ -5,24 +5,21 @@ import PodcastCard from "./PodcastCard";
 import { Grid } from "@mui/material";
 import Input from "@mui/joy/Input";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 const Home = () => {
   const [podcastList, setPodcastList] = useState([]);
-  const [searchText, setsearchText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
+  const [searchText, setsearchText] = useState("");
 
   useEffect(() => {
     if (searchText) {
       setFilteredList(
         podcastList.filter((podcast) => {
-          return podcast.title.label
-            .toLowerCase()
-            .includes(
-              searchText.toLowerCase() ||
-                podcast["im:artist"].label
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase())
-            );
+          return (
+            podcast.title.toLowerCase().includes(searchText.toLowerCase()) ||
+            podcast.artist.toLowerCase().includes(searchText.toLowerCase())
+          );
         })
       );
     } else {
@@ -54,14 +51,34 @@ const Home = () => {
 
   return (
     <>
-      <Box textAlign={"right"} sx={{ display: "inline" }}>
-        <div className="counter">{filteredList.length}</div>
+      <Box
+        textAlign={"right"}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          gap: "1rem",
+          mb: 2,
+        }}
+      >
+        <Typography
+          fontWeight={"bold"}
+          color={"#ffff"}
+          sx={{ background: "#227cc7" }}
+          borderRadius={2}
+          fontSize="large"
+          width={"3rem"}
+          textAlign={"center"}
+        >
+          {filteredList.length}
+        </Typography>
         <Input
           type="text"
           placeholder="Filter podcasts..."
           className="searchinput"
           onChange={handleChange}
           value={searchText}
+          sx={{ width: "30%" }}
         />
       </Box>
       <Grid

@@ -1,45 +1,56 @@
 import API_URL from "../config";
+import Mapping from "../utils/Mapping";
 const xml2js = require("xml2js");
 
 const podcastsService = {
-  getAll: async () => {
+  getAll: () => {
     return fetch(API_URL)
       .then((response) => response.json())
-      .then((data) => data.feed.entry);
+      .then((data) => Mapping.mapPodcasts(data.feed.entry));
   },
-  getPodcast: async (podcastId) => {
+  getPodcast: (podcastId) => {
     const URL = `https://itunes.apple.com/lookup?id=${podcastId}`;
     return fetch(URL)
       .then((response) => response.json())
       .then((data) => {
-        const secondUrl = data.results[0].feedUrl;
-        return fetch(secondUrl)
-          .then((response) => response.text())
-          .then(async (xml) => {
-            const result = await new Promise((resolve, reject) => {
-              xml2js.parseString(
-                xml,
-                { explicitArray: false, ignoreAttrs: true },
-                (err, result) => {
-                  if (err) {
-                    reject(err);
-                  } else {
-                    resolve(result);
-                  }
-                }
-              );
-            });
-
-            const completeData = {
-              ...data["results"][0],
-              podcastDetails: result.rss.channel,
+        const mappedPodcast = Mapping.mapPodcast(data["results"][0]);
+        return podcastsService
+          .getEpisodes(mappedPodcast.feedUrl)
+          .then((episodes) => {
+            const fullPodcast = {
+              ...mappedPodcast,
+              episodes: episodes,
             };
 
-            return completeData;
+            return fullPodcast;
           });
       })
       .catch((error) => {
         console.error("Error fetching data", error);
+      });
+  },
+
+  getEpisodes: (url) => {
+    return fetch(url)
+      .then((response) => response.text())
+      .then(async (xml) => {
+        const result = await new Promise((resolve, reject) => {
+          xml2js.parseString(
+            xml,
+            { explicitArray: false, ignoreAttrs: true },
+            (err, result) => {
+              if (err) {
+                reject(err);
+              } else {
+                resolve(result);
+              }
+            }
+          );
+        });
+
+        const mappedEpisodes = Mapping.mapEpisodes(result.rss.channel.item);
+
+        return mappedEpisodes;
       });
   },
 };

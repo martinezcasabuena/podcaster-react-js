@@ -13,9 +13,7 @@ const EpisodeDetails = () => {
   useEffect(() => {
     const value = localStorageService.getKey(`p-${podcastId}`);
     if (value) {
-      const episodeItem = value.podcastDetails.item.find(
-        (x) => x.guid == episodeId
-      );
+      const episodeItem = value.episodes.find((x) => x.id == episodeId);
       if (episodeItem) {
         setEpisodeInfo(episodeItem);
       }

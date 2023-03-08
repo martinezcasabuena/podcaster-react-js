@@ -8,20 +8,17 @@ const EpisodeRow = ({ episode }) => {
   return (
     <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
       <TableCell>
-        <Link
-          className="episode-title column"
-          to={`episode/${episode["guid"]}`}
-        >
-          {episode["title"]}
+        <Link className="episode-title column" to={`episode/${episode.id}`}>
+          {episode.title}
         </Link>
       </TableCell>
       <TableCell align="center">
-        {new Date(episode["pubDate"]).toLocaleDateString()}
+        {new Date(episode.date).toLocaleDateString()}
       </TableCell>
       <TableCell align="center">
-        {isNaN(episode["itunes:duration"])
-          ? episode["itunes:duration"]
-          : secondsToTime(episode["itunes:duration"])}
+        {isNaN(episode.duration)
+          ? episode.duration
+          : secondsToTime(episode.duration)}
       </TableCell>
     </TableRow>
   );
