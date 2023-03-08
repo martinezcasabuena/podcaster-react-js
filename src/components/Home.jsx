@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import localStorageService from "../services/localStorageService";
 import podcastsService from "../services/podcastsService";
 import PodcastCard from "./PodcastCard";
+import { Grid } from "@mui/material";
+import Input from "@mui/joy/Input";
+import Box from "@mui/material/Box";
 
 const Home = () => {
   const [podcastList, setPodcastList] = useState([]);
@@ -51,21 +54,26 @@ const Home = () => {
 
   return (
     <>
-      <div className="search-container">
+      <Box textAlign={"right"} sx={{ display: "inline" }}>
         <div className="counter">{filteredList.length}</div>
-        <input
+        <Input
           type="text"
           placeholder="Filter podcasts..."
           className="searchinput"
           onChange={handleChange}
           value={searchText}
         />
-      </div>
-      <div className="podcast-list-container">
+      </Box>
+      <Grid
+        container
+        spacing={4}
+        className="podcast-list-container"
+        columns={4}
+      >
         {filteredList.map((podcast, i) => (
           <PodcastCard key={i} data={podcast} />
         ))}
-      </div>
+      </Grid>
     </>
   );
 };

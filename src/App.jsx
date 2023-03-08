@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import PodcastDetails from "./components/PodcastDetails";
 import EpisodeDetails from "./components/EpisodeDetails";
+import { Container } from "@mui/material";
 
 export const AppContext = createContext();
 
@@ -13,7 +14,7 @@ const App = () => {
 
   return (
     <AppContext.Provider value={{ loading, setLoading }}>
-      <div className="App">
+      <Container maxWidth="lg">
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -21,7 +22,7 @@ const App = () => {
             <Route path="episode/:episodeId" element={<EpisodeDetails />} />
           </Route>
         </Routes>
-      </div>
+      </Container>
     </AppContext.Provider>
   );
 };
