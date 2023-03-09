@@ -22,14 +22,16 @@ const EpisodeDetails = () => {
 
   return (
     <Box sx={{ boxShadow: 2, py: 1, px: 2 }}>
-      <h2>{episodeInfo.title}</h2>
+      <Typography sx={{ my: 1 }} variant="h5" fontWeight={"bold"}>
+        {episodeInfo.title}
+      </Typography>
       <Typography
         variant="p"
         fontStyle={"italic"}
         dangerouslySetInnerHTML={{
           __html: episodeInfo.description,
         }}
-      ></Typography>
+      />
       <Divider sx={{ my: 4 }} />
 
       {episodeInfo.audioURL && (

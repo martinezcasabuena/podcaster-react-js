@@ -8,7 +8,10 @@ const PodcastInfo = ({ podcast }) => {
   const { loading } = useContext(AppContext);
 
   return (
-    <Link to={`/podcast/${podcast.id}`}>
+    <Link
+      to={`/podcast/${podcast.id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
       <Box sx={{ my: 3 }}>
         {loading ? (
           <Skeleton
@@ -23,24 +26,27 @@ const PodcastInfo = ({ podcast }) => {
       </Box>
 
       <Divider sx={{ mx: 1 }} />
-      <Box sx={{ my: 3, mx: 2 }} className="podcast-name" textAlign={"left"}>
+      <Box sx={{ my: 3, mx: 2.5 }} className="podcast-name" textAlign={"left"}>
         {loading ? (
           <>
             <Skeleton variant="text" sx={{ height: 12, my: 1 }} width="80%" />
             <Skeleton variant="text" sx={{ height: 12, my: 1 }} width="50%" />
           </>
         ) : (
-          <>
+          <Box>
             <strong>{podcast.title}</strong>
-            <div>
-              <span>by </span>
-              <span>{podcast.artist}</span>
-            </div>
-          </>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              fontStyle={"italic"}
+            >
+              by {podcast.artist}
+            </Typography>
+          </Box>
         )}
       </Box>
       <Divider sx={{ mx: 1 }} />
-      <Box sx={{ my: 3, mx: 1 }} className="podcast-description">
+      <Box sx={{ my: 3, mx: 1.5 }} className="podcast-description">
         {loading ? (
           <>
             <Skeleton variant="text" sx={{ height: 12, my: 1 }} width="50%" />
@@ -48,12 +54,26 @@ const PodcastInfo = ({ podcast }) => {
             <Skeleton variant="text" sx={{ height: 12, my: 1 }} width="90%" />
           </>
         ) : (
-          <>
-            <strong>Description:</strong>
-            <Typography sx={{ my: 1 }} variant="body2" color="text.secondary">
-              {podcast["description"]}
-            </Typography>
-          </>
+          podcast.description && (
+            <Box>
+              <Typography
+                sx={{ mb: 1 }}
+                variant="text"
+                color="text.secondary"
+                fontWeight={"500"}
+              >
+                Description:
+              </Typography>
+              <Typography
+                sx={{ my: 1 }}
+                variant="body2"
+                color="text.secondary"
+                dangerouslySetInnerHTML={{
+                  __html: podcast.description,
+                }}
+              />
+            </Box>
+          )
         )}
       </Box>
     </Link>

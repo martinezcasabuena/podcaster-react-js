@@ -10,8 +10,12 @@ import { Box } from "@mui/material";
 
 const EpisodesTable = ({ episodeList }) => {
   return (
-    <TableContainer component={Box} sx={{ boxShadow: 2, my: 3, px: 3, py: 2 }}>
-      <Table>
+    <TableContainer
+      component={Box}
+      sx={{ boxShadow: 2, my: 3, px: 2, py: 3 }}
+      className="episode-table"
+    >
+      <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>Title</TableCell>

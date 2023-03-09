@@ -16,9 +16,10 @@ const podcastsService = {
         const mappedPodcast = Mapping.mapPodcast(data["results"][0]);
         return podcastsService
           .getEpisodes(mappedPodcast.feedUrl)
-          .then((episodes) => {
+          .then(({ episodes, description }) => {
             const fullPodcast = {
               ...mappedPodcast,
+              description,
               episodes: episodes,
             };
 
@@ -48,9 +49,12 @@ const podcastsService = {
           );
         });
 
-        const mappedEpisodes = Mapping.mapEpisodes(result.rss.channel.item);
+        const podcastDescription = result.rss.channel["itunes:summary"]
+          ? result.rss.channel["itunes:summary"]
+          : result.rss.channel["description"];
+        const episodes = Mapping.mapEpisodes(result.rss.channel.item);
 
-        return mappedEpisodes;
+        return { episodes, description: podcastDescription };
       });
   },
 };

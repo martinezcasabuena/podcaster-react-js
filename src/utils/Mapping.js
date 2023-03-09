@@ -9,7 +9,6 @@ const Mapping = {
         title: podcast["im:name"].label,
         image: podcast["im:image"][2].label,
         artist: podcast["im:artist"].label,
-        description: podcast.summary?.label,
       });
     });
     return podcasts;

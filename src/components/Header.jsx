@@ -36,7 +36,7 @@ const Header = () => {
           />
         </Box>
       </Link>
-      <Divider sx={{ mb: 2 }} />
+      <Divider sx={{ mb: 3 }} />
     </>
   );
 };
