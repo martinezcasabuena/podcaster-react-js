@@ -20,7 +20,7 @@ This application has two modes of execution: `development` and `production`. To 
 yarn start
 ```
 
-This will start the development server and you can access the application in your browser at `http://localhost:3000`.
+This will start the development server and you can access the application in your browser at `http://localhost:8080`.
 
 To build the application for production, use the following command:
 
