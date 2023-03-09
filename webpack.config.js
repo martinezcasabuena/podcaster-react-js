@@ -62,10 +62,14 @@ module.exports = (env, argv) => {
         filename: "index.html",
         inject: "body",
         favicon: path.resolve(__dirname, "public", "favicon.ico"),
+        publicPath: "/",
       }),
     ],
     resolve: {
       extensions: [".js", ".jsx"],
+    },
+    devServer: {
+      historyApiFallback: true,
     },
   };
 };

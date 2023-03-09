@@ -5,7 +5,7 @@ const localStorageService = {
     try {
       localStorage.setItem(name, JSON.stringify({ value, expDate }));
     } catch (error) {
-      console.log("Local storage is full, please empty data.");
+      console.log("Local storage is full, please empty data.", error);
     }
   },
   getKey: (name) => {
@@ -13,7 +13,6 @@ const localStorageService = {
     if (item && new Date().getTime() < item.expDate) {
       return item.value;
     } else {
-      console.log(name, "expired");
       localStorage.removeItem(name);
     }
   },
