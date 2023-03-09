@@ -32,7 +32,7 @@ const Header = () => {
           <CircularProgress
             sx={{ mr: 1, color: "#227cc7" }}
             size={25}
-            className={`Spinner ${!isLoading ? "fade-out" : ""}`}
+            className={`${!isLoading ? "fade-out" : ""}`}
           />
         </Box>
       </Link>

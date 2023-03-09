@@ -21,8 +21,10 @@ const Podcast = () => {
       setPodcast(value);
     } else {
       const podcastData = await podcastsService.getPodcast(podcastId);
-      setPodcast(podcastData);
-      localStorageService.setKey(`p-${podcastId}`, podcastData);
+      if (podcastData) {
+        setPodcast(podcastData);
+        localStorageService.setKey(`p-${podcastId}`, podcastData);
+      }
     }
     setLoading(false);
   };
@@ -42,9 +44,7 @@ const Podcast = () => {
         <PodcastInfo podcast={podcast} />
       </Box>
 
-      <Box className="podcast-detail-right">
-        {outlet ? <Outlet /> : <PodcastDetails podcast={podcast} />}
-      </Box>
+      <Box>{outlet ? <Outlet /> : <PodcastDetails podcast={podcast} />}</Box>
     </Box>
   );
 };

@@ -18,9 +18,7 @@ const EpisodeRow = ({ episode }) => {
   return (
     <StyledTableRow>
       <TableCell>
-        <Link className="episode-title column" to={`episode/${episode.id}`}>
-          {episode.title}
-        </Link>
+        <Link to={`episode/${episode.id}`}>{episode.title}</Link>
       </TableCell>
       <TableCell align="center">
         {new Date(episode.date).toLocaleDateString()}

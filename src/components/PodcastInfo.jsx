@@ -11,6 +11,7 @@ const PodcastInfo = ({ podcast }) => {
     <Link
       to={`/podcast/${podcast.id}`}
       style={{ textDecoration: "none", color: "inherit" }}
+      className={`${loading ? "disabled-link" : ""}`}
     >
       <Box sx={{ my: 3 }}>
         {loading ? (
@@ -26,7 +27,7 @@ const PodcastInfo = ({ podcast }) => {
       </Box>
 
       <Divider sx={{ mx: 1 }} />
-      <Box sx={{ my: 3, mx: 2.5 }} className="podcast-name" textAlign={"left"}>
+      <Box sx={{ my: 3, mx: 2.5 }} textAlign={"left"}>
         {loading ? (
           <>
             <Skeleton variant="text" sx={{ height: 12, my: 1 }} width="80%" />
@@ -71,6 +72,7 @@ const PodcastInfo = ({ podcast }) => {
                 dangerouslySetInnerHTML={{
                   __html: podcast.description,
                 }}
+                fontStyle={"italic"}
               />
             </Box>
           )

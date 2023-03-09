@@ -1,5 +1,16 @@
+/* The CSS is 95% integrated in the Material UI components
+** These clases are for special things and some details */
+
 html {
   overflow-y: overlay;
+}
+
+.App {
+  max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -16,150 +27,14 @@ code {
     monospace;
 }
 
-.header-container {
-  text-align: left;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* .podcast-list-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 84px;
-  justify-content: space-between;
-}
-
-.podcast-card-container {
-  width: 20%;
-}
-
-.podcast-card-container img {
-  max-width: 170px;
-} */
-
-.search-container {
-  display: flex;
-  justify-content: flex-end;
-  height: 50px;
-  align-items: center;
-  border-radius: 6px;
-  border-color: lightgray;
-}
-
-.search-container .searchinput {
-  height: 35px;
-  width: 250px;
-  padding: 0px 10px;
-}
-
-.search-container .counter {
-  margin-right: 20px;
-  background: blue;
-  border-radius: 10px;
-  font-size: 21px;
-  font-weight: bold;
-  color: white;
-  padding: 0px 8px;
-}
-
-.header-container {
-  border-bottom: 1px solid lightgray;
-}
-
-/* .podcast-detail-container {
-  padding: 0px 15px;
-} */
-
-/* .podcast-detail-left {
-  width: 20%;
-  border: 1px solid black;
-  padding: 15px 20px;
-  display: inline-block;
-} */
 .podcast-detail-left img {
   width: 70%;
   align-self: center;
   border-radius: 10px;
 }
 
-/* .podcast-detail-left .podcast-name {
-  margin-top: 25px;
-} */
-
 .podcast-detail-left .podcast-description {
-  margin-top: 25px;
   text-align: left;
-}
-
-.podcast-detail-left .podcast-description {
-  margin-top: 25px;
-  text-align: left;
-}
-
-.podcast-detail-left .podcast-description p {
-  font-style: italic;
-}
-
-/* .podcast-detail-right {
-  vertical-align: top;
-  width: 70%;
-  border: 1px solid black;
-  float: right;
-} */
-
-/* .podcast-detail-right .episodes-count {
-  border: 1px solid black;
-  padding: 10px;
-}
-
-.podcast-detail-right .episodes-list {
-  margin-top: 20px;
-  border: 1px solid black;
-  padding: 20px;
-}
-
-.podcast-detail-right .episodes-list .episode-row {
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid;
-  padding: 5px 0px;
-  border-color: gray;
-  height: 35px;
-  align-items: center;
-}
-
-.podcast-detail-right .episodes-list .episode-row:last-child {
-  border-bottom: 1px solid gray;
-}
-
-.podcast-detail-right .episodes-list .episode-row .column {
-  flex-basis: 0;
-  flex-grow: 1;
-  padding: 5px;
-}
-
-.podcast-detail-right .episodes-list .episode-row .episode-title {
-  flex-basis: 60%;
-}
-
-.podcast-detail-right .episodes-list .episode-row.header {
-  border: 0;
-  margin-bottom: 15px;
-  font-weight: bold;
-} */
-
-.cabecera {
-  display: flex;
-  flex-direction: row;
-  background-color: lightgray;
-}
-
-.fila {
-  display: flex;
-  flex-direction: row;
 }
 
 input:focus,
@@ -180,10 +55,6 @@ a:hover {
   color: black;
 }
 
-.App {
-  max-width: 1200px;
-}
-
 .audio-reproducer {
   width: 100%;
   margin-bottom: 1rem;
@@ -202,4 +73,15 @@ a:hover {
 .episode-table td {
   padding-bottom: 10px;
   padding-top: 10px;
+}
+
+.disabled-link {
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .MuiAvatar-root.MuiAvatar-circular {
+    width: 75px;
+    height: 75px;
+  }
 }

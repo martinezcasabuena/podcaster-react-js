@@ -42,9 +42,11 @@ const Home = () => {
       setFilteredList(value);
     } else {
       const podcasts = await podcastsService.getAll();
-      setPodcastList(podcasts);
-      setFilteredList(podcasts);
-      localStorageService.setKey("podcasts-lst", podcasts);
+      if (podcasts) {
+        setPodcastList(podcasts);
+        setFilteredList(podcasts);
+        localStorageService.setKey("podcasts-lst", podcasts);
+      }
     }
     setLoading(false);
   };
@@ -79,18 +81,12 @@ const Home = () => {
         <Input
           type="text"
           placeholder="Filter podcasts..."
-          className="searchinput"
           onChange={handleChange}
           value={searchText}
           sx={{ width: "30%" }}
         />
       </Box>
-      <Grid
-        container
-        spacing={4}
-        className="podcast-list-container"
-        columns={4}
-      >
+      <Grid container spacing={4} columns={4}>
         {filteredList.map((podcast, i) => (
           <PodcastCard key={i} data={podcast} />
         ))}
