@@ -1,6 +1,6 @@
-import GenerateGUID from "./GenerateGUID";
+import GenerateGUID from "../utils/GenerateGUID";
 
-const Mapping = {
+const podcastMapper = {
   mapPodcasts: (data) => {
     let podcasts = [];
     data.forEach((podcast) => {
@@ -28,6 +28,8 @@ const Mapping = {
     data.forEach((episode) => {
       var id = episode.guid["_"] ? episode.guid["_"] : episode.guid;
       const validID = /^[^\/:]*$/.test(id);
+
+      //If the ID is not valid, we create one new ID just for us, for the navigation.
       if (!validID) {
         id = GenerateGUID();
       }
@@ -46,4 +48,4 @@ const Mapping = {
   },
 };
 
-export default Mapping;
+export default podcastMapper;

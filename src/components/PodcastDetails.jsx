@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { AppContext } from "../App";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import EpisodesTable from "./EpisodesTable";
 import { Skeleton } from "@mui/material";
+import { AppContext } from "../App";
+import EpisodesTable from "./EpisodesTable";
 
 const PodcastDetails = ({ podcast }) => {
   const { loading } = useContext(AppContext);

@@ -1,11 +1,11 @@
 import "./App.css";
 import React, { createContext, useState, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { Container } from "@mui/material";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Podcast from "./pages/Podcast";
 import EpisodeDetails from "./components/EpisodeDetails";
-import { Container } from "@mui/material";
 
 export const AppContext = createContext();
 
@@ -13,8 +13,10 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [navigationLoading, setNavigationLoading] = useState(false);
   const [prevLoc, setPrevLoc] = useState("");
+  const [error, setError] = useState(false);
   const location = useLocation();
 
+  // If navigation change, the spinner on header will appear
   useEffect(() => {
     setPrevLoc(location.pathname);
     setNavigationLoading(true);
@@ -23,8 +25,8 @@ const App = () => {
     }
   }, [location]);
 
-  // navigationLoading state is to not return "false" if the navigation has been completed, but not the fetch and data load,
-  // so the spinner on header still appearing
+  // The navigationLoading state is to not return "false" if the navigation has been completed, but not the fetch and data load,
+  // So the spinner on header still appearing
   useEffect(() => {
     if (navigationLoading) {
       setNavigationLoading(false);
@@ -32,7 +34,9 @@ const App = () => {
   }, [prevLoc]);
 
   return (
-    <AppContext.Provider value={{ loading, navigationLoading, setLoading }}>
+    <AppContext.Provider
+      value={{ loading, navigationLoading, setLoading, error, setError }}
+    >
       <Container maxWidth="lg">
         <Header />
         <Routes>

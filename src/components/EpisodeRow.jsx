@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import secondsToTime from "../utils/SecondsToTime";
+import { styled } from "@mui/material/styles";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import { styled } from "@mui/material/styles";
+import secondsToTime from "../utils/SecondsToTime";
 
 const EpisodeRow = ({ episode }) => {
   const StyledTableRow = styled(TableRow)(({ theme }) => ({

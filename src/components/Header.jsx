@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import { AppContext } from "../App";
+import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Link } from "react-router-dom";
-import { Box } from "@mui/material";
+import { AppContext } from "../App";
 
 const Header = () => {
   const { loading, navigationLoading } = useContext(AppContext);
-  const isLoading = loading || navigationLoading;
+  const isLoading = loading || navigationLoading; //Data is loading or navigation is loading. Only for the spinner element
 
   return (
     <>

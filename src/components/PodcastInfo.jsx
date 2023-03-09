@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { AppContext } from "../App";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import { Box, Divider, Skeleton } from "@mui/material";
+import { AppContext } from "../App";
 
 const PodcastInfo = ({ podcast }) => {
   const { loading } = useContext(AppContext);

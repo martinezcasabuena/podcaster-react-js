@@ -1,12 +1,12 @@
 import { API_URL, API_URL_PODCAST, PROXY_URL } from "../config";
-import Mapping from "../utils/Mapping";
+import podcastMapper from "../mappers/podcastMapper";
 const xml2js = require("xml2js");
 
 const podcastsService = {
   getAll: () => {
     return fetch(API_URL)
       .then((response) => response.json())
-      .then((data) => Mapping.mapPodcasts(data.feed.entry))
+      .then((data) => podcastMapper.mapPodcasts(data.feed.entry))
       .catch((error) => {
         console.error("Error fetching the list of podcasts", error);
       });
@@ -16,7 +16,7 @@ const podcastsService = {
     return fetch(URL)
       .then((response) => response.json())
       .then((data) => {
-        const mappedPodcast = Mapping.mapPodcast(data["results"][0]);
+        const mappedPodcast = podcastMapper.mapPodcast(data["results"][0]);
         return podcastsService
           .getEpisodes(mappedPodcast.feedUrl)
           .then(({ episodes, description }) => {
@@ -57,7 +57,7 @@ const podcastsService = {
         const podcastDescription = result.rss.channel["itunes:summary"]
           ? result.rss.channel["itunes:summary"]
           : result.rss.channel["description"];
-        const episodes = Mapping.mapEpisodes(result.rss.channel.item);
+        const episodes = podcastMapper.mapEpisodes(result.rss.channel.item);
 
         return { episodes, description: podcastDescription };
       });

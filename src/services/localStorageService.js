@@ -1,4 +1,4 @@
-const day = 24 * 60 * 60 * 1000;
+const day = 24 * 60 * 60 * 1000; // Day in ms
 const localStorageService = {
   setKey: (name, value) => {
     const expDate = new Date().getTime() + day;

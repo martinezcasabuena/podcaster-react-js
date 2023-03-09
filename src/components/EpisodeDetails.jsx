@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import localStorageService from "../services/localStorageService";
-import { AppContext } from "../App";
 import { Box, Divider } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import localStorageService from "../services/localStorageService";
+import { AppContext } from "../App";
 
 const EpisodeDetails = () => {
   const { podcastId, episodeId } = useParams();
@@ -18,7 +18,7 @@ const EpisodeDetails = () => {
         setEpisodeInfo(episodeItem);
       }
     }
-  }, [loading]);
+  }, [loading]); // With this dependency, we can load the episode info if we access directly to the route, even if we don't even have the data in localStorage
 
   return (
     <Box sx={{ boxShadow: 2, py: 1, px: 2 }}>
