@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import localStorageService from "../services/localStorageService";
 import podcastsService from "../services/podcastsService";
 import PodcastCard from "../components/PodcastCard";
+import { AppContext } from "../App";
 import { Grid } from "@mui/material";
 import Input from "@mui/joy/Input";
 import Box from "@mui/material/Box";
@@ -11,6 +12,7 @@ const Home = () => {
   const [podcastList, setPodcastList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [searchText, setsearchText] = useState("");
+  const { setLoading } = useContext(AppContext);
 
   useEffect(() => {
     if (searchText) {
@@ -33,6 +35,7 @@ const Home = () => {
   };
 
   const getData = async () => {
+    setLoading(true);
     const value = localStorageService.getKey("podcasts-lst");
     if (value) {
       setPodcastList(value);
@@ -43,6 +46,7 @@ const Home = () => {
       setFilteredList(podcasts);
       localStorageService.setKey("podcasts-lst", podcasts);
     }
+    setLoading(false);
   };
 
   useEffect(() => {

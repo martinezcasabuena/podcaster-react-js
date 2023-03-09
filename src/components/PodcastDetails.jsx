@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../App";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import EpisodesTable from "./EpisodesTable";
+import { Skeleton } from "@mui/material";
 
 const PodcastDetails = ({ podcast }) => {
+  const { loading } = useContext(AppContext);
+
   return (
     <>
       <Box sx={{ boxShadow: 2, py: 1, px: 2 }}>
-        <Typography
-          sx={{ my: 1 }}
-          variant="h5"
-          //   color="text.secondary"
-          fontWeight={"bold"}
-        >
-          Episodes: {podcast.episodes?.length}
-        </Typography>
+        {loading ? (
+          <>
+            <Skeleton variant="text" sx={{ height: 12, my: 1 }} />
+            <Skeleton variant="text" sx={{ height: 12, my: 1 }} />
+          </>
+        ) : (
+          <Typography sx={{ my: 1 }} variant="h5" fontWeight={"bold"}>
+            Episodes: {podcast.episodes?.length}
+          </Typography>
+        )}
       </Box>
 
-      <EpisodesTable episodeList={podcast.episodes} />
+      {loading ? (
+        <>
+          <Skeleton variant="text" sx={{ mt: 2, mb: 1 }} />
+          <Skeleton variant="text" sx={{ my: 1 }} />
+          <Skeleton variant="text" sx={{ my: 1 }} />
+          <Skeleton variant="text" sx={{ my: 1 }} />
+          <Skeleton variant="text" sx={{ my: 1 }} />
+        </>
+      ) : (
+        <EpisodesTable episodeList={podcast.episodes} />
+      )}
     </>
   );
 };

@@ -2,7 +2,11 @@ const day = 24 * 60 * 60 * 1000;
 const localStorageService = {
   setKey: (name, value) => {
     const expDate = new Date().getTime() + day;
-    localStorage.setItem(name, JSON.stringify({ value, expDate }));
+    try {
+      localStorage.setItem(name, JSON.stringify({ value, expDate }));
+    } catch (error) {
+      console.log("Local storage is full, please empty data.");
+    }
   },
   getKey: (name) => {
     const item = JSON.parse(localStorage.getItem(name));
