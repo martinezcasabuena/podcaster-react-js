@@ -7,7 +7,7 @@ This is a single-page application (SPA) built with React JS that allows you to p
 To get started, you need to clone the repository and install the dependencies using npm or yarn:
 
 ```
-git clone https://github.com/martinezcasabuena/inditex-technical-test.git
+git clone https://github.com/martinezcasabuena/podcaster-react-js.git
 cd inditex-technical-test
 yarn install
 ```
